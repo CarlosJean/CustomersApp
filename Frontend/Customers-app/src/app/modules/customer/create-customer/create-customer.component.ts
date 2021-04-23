@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl,FormBuilder, FormGroup } from '@angular/forms';
+import { FormControl,FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormArray } from '@angular/forms';
 import { CustomersService } from 'src/app/Services/customers.service';
 
@@ -12,22 +12,15 @@ export class CreateCustomerComponent implements OnInit {
 
   statusCode:number = 0;
   message:string = "";
-  /* customerForm = new FormGroup({
-    names: new FormControl(''),
-    surnames: new FormControl(''),
-    phoneNumber: new FormControl(''),
-    telephoneNumber: new FormControl(''),
-  });
- */
 
 constructor(private fb: FormBuilder, private customersService:CustomersService) { }
 customerForm = this.fb.group({
-  names: ['']/* new FormControl('') */,
-    surnames: ['']/* new FormControl('') */,
-    phoneNumber: ['']/* new FormControl('') */,
-    telephoneNumber: ['']/* new FormControl('') */,
+  names: [''],
+    surnames: [''],
+    phoneNumber: [''],
+    telephoneNumber: [''],
     addresses : this.fb.array([
-      this.fb.control('')
+      this.fb.control('',Validators.required)
     ])
 });
 
@@ -53,7 +46,10 @@ customerForm = this.fb.group({
   }
 
   RemoveAdress(){    
-    this.addresses.removeAt(this.addAdress.length - 1);
+    let addressControls = this.addresses.controls; //Para contar la cantidad de controles de dirección.
+    if (addressControls.length > 1) {
+      this.addresses.removeAt(addressControls.length - 1);      
+    }
   }
 
   limpiarAlerta(){

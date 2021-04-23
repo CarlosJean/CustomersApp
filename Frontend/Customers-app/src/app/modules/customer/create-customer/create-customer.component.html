@@ -8,14 +8,15 @@
         <div class="alert alert-danger" role="alert" *ngIf="statusCode != 0 && statusCode != 200">
             {{message}}
         </div>
+        <a [routerLink]="['/cliente']">Volver al listado</a>
         <form class="row" [formGroup]="customerForm" (ngSubmit)="ngOnSubmit()">
             <div class="form-group col-sm-6">
-                <label for="">Nombres</label>
-                <input type="text" name="" id="" class="form-control" formControlName="names">
+                <label for="">Nombres<span class="requiredFieldIndicator">*</span></label>
+                <input type="text" name="" id="" class="form-control" formControlName="names" required>
             </div>
             <div class="form-group col-sm-6">
-                <label for="">Apellidos</label>
-                <input type="text" name="" id="" class="form-control" formControlName="surnames">
+                <label for="">Apellidos<span class="requiredFieldIndicator">*</span></label>
+                <input type="text" name="" id="" class="form-control" formControlName="surnames" required>
             </div>
             <div class="form-group col-sm-6">
                 <label for="">Número de teléfono</label>
@@ -25,6 +26,7 @@
                 <label for="">Número de celular</label>
                 <input type="text" name="" id="" class="form-control" formControlName="telephoneNumber" maxlength="10">
             </div>
+            <div class="form-group col-sm-12"><label>Dirección:<span class="requiredFieldIndicator">*</span></label></div>
             <div class="form-group col-sm-12">
                 <button class="btn btn-dark" (click)="addAdress()" type="button">Agregar dirección</button> | 
                 <button class="btn btn-warning" (click)="RemoveAdress()" type="button">Quitar dirección</button>
@@ -33,7 +35,7 @@
                 <input type="text" class="form-control" [formControlName]="i" placeholder="Ingrese una direción">
             </div>
             <div class="form-group col-sm-6">
-                <input type="submit" value="Guardar cliente" class="btn btn-success">
+                <input type="submit" value="Guardar cliente" class="btn btn-success" [disabled]="!customerForm.valid">
             </div>
         </form>
     </div>

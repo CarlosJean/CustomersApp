@@ -7,6 +7,7 @@
     <div class="row" *ngIf="customer != null">
         <h1 class="col-sm-12">Informaciones de {{customer.names}} {{customer.surnames}}</h1>
         <hr class="col-sm-12">
+        <a [routerLink]="['/cliente']">Volver al listado</a>
         <div class="col-sm-12" id="dvInfo">
             <p><span><strong>Nombres:</strong></span> {{customer.names}}</p>
             <p><span><strong>Apellidos:</strong></span> {{customer.surnames}}</p>
