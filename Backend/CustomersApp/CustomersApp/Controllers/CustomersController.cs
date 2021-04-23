@@ -41,9 +41,9 @@ namespace CustomersApp.Controllers {
         }
 
         // PUT api/<CustomersController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value) {
-        }
+        //[HttpPut("{id}")]
+        //public void Put(int id, [FromBody] string value) {
+        //}
 
         // DELETE api/<CustomersController>/5
         [HttpDelete("{id}")]

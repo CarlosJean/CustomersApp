@@ -15,12 +15,12 @@ export class CreateCustomerComponent implements OnInit {
 
 constructor(private fb: FormBuilder, private customersService:CustomersService) { }
 customerForm = this.fb.group({
-  names: [''],
-    surnames: [''],
-    phoneNumber: [''],
-    telephoneNumber: [''],
+  names: ['', Validators.required],
+    surnames: ['', Validators.required],
+    phoneNumber: ['', [Validators.minLength(10),Validators.pattern("^[0-9]*$")]],
+    telephoneNumber: ['',[Validators.minLength(10),Validators.pattern("^[0-9]*$")]],
     addresses : this.fb.array([
-      this.fb.control('',Validators.required)
+      this.fb.control('',[Validators.required])
     ])
 });
 
