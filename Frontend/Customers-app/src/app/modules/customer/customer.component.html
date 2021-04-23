@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1>Clientes</h1>
+            <hr>
+        </div>
+        <div class="col-sm-6">
+            <a [routerLink]="['./crear']">Crear nuevo cliente</a>
+        </div>    
+    <div class="col-sm-12">
+        <div class="alert alert-success col-sm-12" role="alert" *ngIf="statusCode == 200">
+            {{message}}
+        </div>
+        <div class="alert alert-danger col-sm-12" role="alert" *ngIf="statusCode != 0 && statusCode != 200">
+            {{message}}
+        </div>
+        <table class="table"> 
+            <thead>
+                <tr>
+                    <th>Nombres</th>
+                    <th>Apellidos</th>
+                    <th>Número de teléfono</th>
+                    <th>Número celular</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>  
+            <tbody>
+                <tr *ngFor="let customer of customers">
+                    <td>{{customer.names}}</td>
+                    <td>{{customer.surnames}}</td>
+                    <td>{{customer.telephoneNumber}}</td>
+                    <td>{{customer.phoneNumber}}</td>
+                    <td>
+                        <a [routerLink]="['./detalle', customer.id]">Detalle</a> |
+                        <input type="button" value="Eliminar" class="btn btn-danger" (click)="deleteCustomer($event)" [id]="customer.id">
+                    </td>
+                </tr>
+            </tbody>  
+        </table>
+    </div>  
+</div>      
+</div>

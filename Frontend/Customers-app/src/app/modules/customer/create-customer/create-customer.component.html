@@ -1,0 +1,40 @@
+<div class="container">
+    <div class="row">
+        <h1 class="col-sm-12">Crear cliente</h1>
+        <hr>
+        <div class="alert alert-success col-sm-12" role="alert" *ngIf="statusCode == 200">
+            {{message}} <a [routerLink]="['../']">Ver listado de clientes</a>
+        </div>
+        <div class="alert alert-danger" role="alert" *ngIf="statusCode != 0 && statusCode != 200">
+            {{message}}
+        </div>
+        <form class="row" [formGroup]="customerForm" (ngSubmit)="ngOnSubmit()">
+            <div class="form-group col-sm-6">
+                <label for="">Nombres</label>
+                <input type="text" name="" id="" class="form-control" formControlName="names">
+            </div>
+            <div class="form-group col-sm-6">
+                <label for="">Apellidos</label>
+                <input type="text" name="" id="" class="form-control" formControlName="surnames">
+            </div>
+            <div class="form-group col-sm-6">
+                <label for="">Número de teléfono</label>
+                <input type="text" name="" id="" class="form-control" formControlName="phoneNumber" maxlength="10">
+            </div>
+            <div class="form-group col-sm-6">
+                <label for="">Número de celular</label>
+                <input type="text" name="" id="" class="form-control" formControlName="telephoneNumber" maxlength="10">
+            </div>
+            <div class="form-group col-sm-12">
+                <button class="btn btn-dark" (click)="addAdress()" type="button">Agregar dirección</button> | 
+                <button class="btn btn-warning" (click)="RemoveAdress()" type="button">Quitar dirección</button>
+            </div>
+            <div class="form-group col-sm-12" formArrayName="addresses" *ngFor="let address of addresses.controls; let i=index">
+                <input type="text" class="form-control" [formControlName]="i" placeholder="Ingrese una direción">
+            </div>
+            <div class="form-group col-sm-6">
+                <input type="submit" value="Guardar cliente" class="btn btn-success">
+            </div>
+        </form>
+    </div>
+</div>
